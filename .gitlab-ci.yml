@@ -8,7 +8,7 @@ cache:
 google_deploy:
   stage: deploy
   only:
-    - google
+    - main
   script:
     - npm install --global vercel
     - vercel link --project=google --yes --token=$VERCEL_TOKEN
