@@ -10,6 +10,7 @@ google_deploy:
   only:
     - main
   script:
+    - npm config set registry https://registry.npmmirror.com/
     - npm install --global vercel
     - vercel link --project=google --yes --token=$VERCEL_TOKEN
     - vercel pull --yes --environment=production --token=$VERCEL_TOKEN
