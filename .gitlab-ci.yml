@@ -1,0 +1,18 @@
+default:
+  image: node:18.16.0
+
+cache:
+  paths:
+    - node_modules/
+
+google_deploy:
+  stage: deploy
+  only:
+    - main
+  script:
+    - npm config set registry https://registry.npmmirror.com/
+    - npm install --global vercel
+    - vercel link --project=google --yes --token=$VERCEL_TOKEN
+    - vercel pull --yes --environment=production --token=$VERCEL_TOKEN
+    - vercel build --prod --token=$VERCEL_TOKEN
+    - vercel deploy --prebuilt --prod --token=$VERCEL_TOKEN
